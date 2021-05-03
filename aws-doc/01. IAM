@@ -1,0 +1,53 @@
+* AssumeRole
+
+sts - AWS Security Token Service(AWS STS)를 사용하면
+AWS 리소스에 대한 액세서를 제어할 수 있는 임시 보안 자격 증명을
+생성하여 신뢰받는 사용자에게 제공 할 수 있다.
+
+임시자격증명은
+ 액세스 키 아이디
+ 비밀 액세스 키
+ 보안 토큰
+
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": "sts:AssumeRole",
+    "Resource": "arn:aws:iam::PRODUCTION-ACCOUNT-ID:role/UpdateApp"
+  }
+}
+
+아래는 CodeDeployRole 에 대한 Role 을 생성하는 CloudFormation template 이다.
+
+AssumeRolePolicyDocument 에서는
+ - ec2 Resouce 임시자격증명을 생성할 수 있도록 허락(Allow) 
+ - Policies 에서는 
+ - 임시자격증명을 통해 S3에 모든 액션을 할 수 있도록 한다.
+ - Resource 는 arn 값이 들어 간다.
+
+Description: test
+Resources:
+  CodeDeployRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"     -- 허락
+            Principal:
+              Service:
+                - "ec2.amazonaws.com"   -- 타겟 ec2 서비스에 대해서
+            Action: 
+              - "sts:AssumeRole"       -- 임시 자격 증명을 생성
+      Path: "/"
+      Policies:
+        -
+          PolicyName: "CodeDeployRolePolicy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "*"
+                Resource: "arn:aws:s3:::amplify-amplify-blog-dev-111116-deployment"

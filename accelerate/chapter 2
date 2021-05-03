@@ -1,0 +1,120 @@
+A sucessful measure of performance should have two key characteristics. First, it
+should focus on a global outcome to ensure teams aren't pitted against each other.
+
+ - 성공적인 성과측정에는 2가지 핵심적인 특징
+ - 전체적인 성과에 집중하고, 팀들이 서로 경쟁하지 않도록 함
+ * pitted against
+
+The classic example is rewarding developers for throughput and operations for stability: 
+this is a key contributor the "wall of confusion" in which development throws poor quality code over 
+the wall to operations, and operations puts in place painful change management processes as a way to
+inhibit change.
+
+- 전형적인 예는 안정적인 처리량과 운영을한 개발자에게 보상을 하는 것
+- 낮음 코드 품질로 인한 혼란의 벽
+- 운영의 벽은 고통스러원 변화 관리
+
+* inhibit
+
+Second, our measure should focus on outcomes not output: it shouldn't reward people for
+putting in large amounts of busywork that doesn't actually help achieve organizational goals.
+
+ - 두번째, 단순 결과 보다는 성과(outcome)에 집중 하는것
+ - 조직에 도움이 되지 않는 단순 많은 일을 한 사람에게는 보상을 하지 않는다.
+ - 즉,결과적으로 단순히 일을 많이 하는 사람 보다는 일정 운영의 벽을 제거하고, 높은 코드 퀄리티를 통해 
+   안정적인 운영과 성과를 내고 비즈니스적은 결과(outcome)을 만들어는 사람들을 알아야 한다.
+
+In our search for measures of delivery performance that meet these criteria, 
+we settled on four: delivery lead time, deployment frequency, time to restore service,
+and change fail rate. 
+ - 위와 같은 성과를 내는 사람을 충족해야 하는 조건을 4가지로 정리
+
+ 1) 리드 타임
+ 2) 배포 주기
+ 3) 서비스 복구 시간
+ 4) 변경 실패율
+
+---------------------------------------------
+
+1. 리드 타임에 대해서
+
+The elevation of lead time as metric is a key element of Lean theory. Lead time is the time
+it takes to go from a customer making a request to the request being satisfied.
+
+ - 리드타임(Lead time)이란 고객의 요청에서 시작해서 실제 요청이 만족스럽게 되는데 까지 소요되는 시간
+
+ However, in the context of product development, where we aim to satisfy multiple customers
+ in ways the may not anticipate, there are two parts to lead time: the time it takes to design 
+ and validate a product or feature, and the time to deliver the feature to customers. In the
+ design part of the lead time, it's often unclear when to start the clock, and often there is
+ high variability. For this reason, Reinertsen calls this part of the lead time the "fuzzy fron end" 
+ (Reinertsen 2009).
+
+ However, the delivery part of the lead time - the time it takes for work to be implemented,
+ tested, and delivered - is easier to measure and has a lower variability.
+
+
+  - 하지만 개발의 주요 내용은 예측하기 어려운 여러많은 고객들을 만족시켜야 함
+  - 리드타임은 2가지로 구분됨
+   1) 제품 또는 기능을 디자인하고 검증하는 시간
+   2) 기능을 실제 고객에 전달하는데 걸리는 시간
+
+ - 디자인을 위한 리드 타임의 경우 언제 시작을 해야하는 명확하지 않거나 잦은 변경이 생길 수 있음 (퍼지 프런트 엔드)
+ - 구현과 테스트를 위한 딜리버리 리드 타임의 경우 측정이 좀 더 쉽고, 변경 가능성이 낮음
+
+ 실제 디자인을 하고 제품을 개발하는 Warterfall 형태의 개발에 대한 리드 타임의 경우, 변화가 클 수 있으며, 정확하게 측정
+ 이 어렵지만, 린 이론에 기반하여 제품 또는 기능을 개발하는 방법의 경우 변화가 작으며 정확하게 측정이 가능하다.
+
+
+ Shorter product delivery lead times are better since they enable faster feedback on
+ what are building and allow us to course correct more rapidly. Short lead times are also 
+ important when there is a defect or outage and we need to deliver a fix rapidly and with 
+ high confidence. We measured product delivery lead time as the time it takes to go from
+ code committed to code successfully running in production, and asked survey respondents
+ to choose from one of the following options:
+ 
+  less than one hour
+  less than one day
+  between one day and one week
+  between one week and one month
+  between one month and six months
+  more than six months
+
+
+ - 리드 타임이 짧으면, 
+   빠르게 방향성을 수정 하고 무엇을 만드지에 대한 방향성
+   좀더 더 빠른 피드백
+
+
+The second metric to consider is batch size. Reducing batch size is another central 
+element of the Lean paradigm -- indeed, it was one of the keys to the success of the 
+Toyota production system. Reducing batch sizes reduces cycle times and variability 
+in flow, accelerate feedback, reduce risk and overhead, improves efficiency, 
+increases motivation and urgency, and reduces costs and schedule growth
+
+* variability : 가변성, 변동성
+* indeed : (긍정적인 진술) 정말 확실히
+
+However, in software, batch size is hard to measure and commumnicate across contexts
+as there is no visible inventory. Therefore, we settled on deployment frequency as
+a proxy for batch size since it is easy to measure and typically has low variablity.
+
+
+By "deployment" we mean a software deployment to production or to an app store. A release 
+(the changes that get deployed) will typically consist of multiple version control commits,
+unless the organization has achieved a single-piece flow where each commit can be release 
+to production.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
